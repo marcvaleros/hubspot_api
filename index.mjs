@@ -8,6 +8,8 @@ import {tcase} from './hubspot.mjs';
 
 dotenv.config()
 
+const port = process.env.PORT || 3000;
+
 const app = new Slack.App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -105,11 +107,8 @@ app.command('/hubspot', async({command, ack, say}) => {
 });
 
 (async () => {
-  const port = 3000
-  // Start your app
-  await app.start(process.env.PORT || port);
+  await app.start(port);
   console.log(`⚡️ Slack Bolt app is running on port ${port}!`);
 })();
-
 
 
