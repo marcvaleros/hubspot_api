@@ -5,7 +5,6 @@ import dotenv from 'dotenv'
 import {getCompanies} from './hubspot.mjs';
 import {convertDate} from './hubspot.mjs';
 import {tcase} from './hubspot.mjs';
-// import express from 'express';
 
 dotenv.config()
 
