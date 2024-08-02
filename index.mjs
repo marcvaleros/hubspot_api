@@ -16,7 +16,7 @@ const app = new Slack.App({
   socketMode: true,
 });
 
-app.command('/sample', async({command, ack, say}) => {
+app.command('/hubspot', async({command, ack, say}) => {
 	await ack();
   const result = await getCompanies();
   const blocks =  [
