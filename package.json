@@ -1,10 +1,20 @@
 {
+ "name": "hubspot_bot",
+ "version": "1.0.0",
+ "main": "index.mjs",
  "type": "module",
-  "dependencies": {
-    "@hubspot/api-client": "^11.1.0",
-    "@slack/bolt": "^3.19.0",
-    "axios": "^1.7.3",
-    "dotenv": "^16.4.5",
-    "request": "^2.88.2"
-  }
+ "scripts": {
+  "dev": "nodemon index.mjs",
+  "start": "node index.mjs"
+ },
+ "dependencies": {
+  "@hubspot/api-client": "^11.1.0",
+  "@slack/bolt": "^3.19.0",
+  "axios": "^1.7.3",
+  "body-parser": "^1.20.2",
+  "dotenv": "^16.4.5",
+  "express": "^4.19.2",
+  "nodemon": "^3.1.4",
+  "request": "^2.88.2"
+ }
 }
