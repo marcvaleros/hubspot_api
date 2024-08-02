@@ -107,8 +107,8 @@ app.command('/hubspot', async({command, ack, say}) => {
 });
 
 (async () => {
-  await app.start(port);
-  console.log(`⚡️ Slack Bolt app is running on port ${port}!`);
+  await app.start();
+  console.log(`⚡️ Slack Bolt app is running!`);
 })();
 
 
