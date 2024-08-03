@@ -1,16 +1,11 @@
 
-
-import Slack from '@slack/bolt'
-import dotenv from 'dotenv'
-import {getCompanies} from './hubspot.mjs';
-import {convertDate} from './hubspot.mjs';
-import {tcase} from './hubspot.mjs';
-
-dotenv.config()
+const { App } = require('@slack/bolt');
+require('dotenv').config();
+const {getCompanies,convertDate,tcase}  = require('./hubspot.js');
 
 const port = process.env.PORT || 8080;
 
-const app = new Slack.App({
+const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   appToken: process.env.SLACK_APP_TOKEN,
@@ -20,6 +15,8 @@ const app = new Slack.App({
 app.command('/hubspot', async({command, ack, say}) => {
 	await ack();
   const result = await getCompanies();
+  console.log(result);
+  
   const blocks =  [
       {
         "type": "divider"

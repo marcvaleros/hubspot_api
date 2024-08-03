@@ -1,6 +1,5 @@
-import axios from 'axios';
-import dotenv from 'dotenv'
-dotenv.config()
+const axios = require('axios');
+require('dotenv').config();
 
 const token = process.env.HUBSPOT_API_KEY;
 const baseURL = 'https://api.hubapi.com/';
@@ -8,7 +7,7 @@ const endpoint = 'crm/v3/objects/companies?limit=100&properties=people,name,phon
 let companies;
 
 //get all the companies, filter and return the latest company
-export const getCompanies = async () => {
+const getCompanies = async () => {
     const response = await axios.get(`${baseURL}${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -26,16 +25,22 @@ export const getCompanies = async () => {
     return companies;
 }
 
-export const convertDate = (isoDate) => {
+const convertDate = (isoDate) => {
   const date = new Date(isoDate);
   const readableDate = date.toLocaleString();
 
   return readableDate;
 }
 
-export const tcase =(str) => {
+const tcase =(str) => {
     return str.toLowerCase().split(' ').map(word => {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }).join(' ');
 }
+
+module.exports = {
+    getCompanies,
+    convertDate,
+    tcase
+};
 

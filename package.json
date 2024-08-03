@@ -1,11 +1,10 @@
 {
  "name": "hubspot_bot",
  "version": "1.0.0",
- "main": "index.mjs",
- "type": "module",
+ "main": "index.js",
  "scripts": {
-  "dev": "nodemon index.mjs",
-  "start": "node index.mjs"
+  "dev": "nodemon index.js",
+  "start": "node index.js"
  },
  "dependencies": {
   "@hubspot/api-client": "^11.1.0",
