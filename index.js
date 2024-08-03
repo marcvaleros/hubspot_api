@@ -1,9 +1,19 @@
 
 const { App } = require('@slack/bolt');
 require('dotenv').config();
+const express = require('express');
 const {getCompanies,convertDate,tcase}  = require('./hubspot.js');
 
 const port = process.env.PORT || 8080;
+const server = express();
+
+server.get('/', (req, res) => {
+  res.send('HubSpot Api for CRM Company Objects! Your server is running.');
+});
+
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+})
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -100,7 +110,6 @@ app.command('/hubspot', async({command, ack, say}) => {
     blocks,
   });
 
-	
 });
 
 (async () => {
