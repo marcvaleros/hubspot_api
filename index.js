@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 
 // async function test () {
 //   const result = await getCompanies();
-//   console.log(result);
+//   console.log(JSON.stringify(result,null,2));
 // }
 
 // test();
@@ -36,6 +36,7 @@ app.command('/hubspot', async({command, ack, say}) => {
 	await ack();
   const results  = await getCompanies();
   const result = results[0];
+console.log(JSON.stringify(result));
   
   const blocks =  [
       {
@@ -68,7 +69,7 @@ app.command('/hubspot', async({command, ack, say}) => {
           },
           {
             "type": "plain_text",
-            "text": `Phone Number: ${result.properties.phone}`,
+            "text": `Phone Number: ${result.properties.phone == null ? 'None' : result.properties.phone}`,
             "emoji": true
           },
           {
