@@ -5,6 +5,15 @@ const express = require('express');
 const {getCompanies,convertDate,tcase}  = require('./hubspot.js');
 
 const port = process.env.PORT || 8080;
+
+// async function test () {
+//   const result = await getCompanies();
+//   console.log(result);
+// }
+
+// test();
+
+//create a server 
 const server = express();
 
 server.get('/', (req, res) => {
@@ -22,10 +31,11 @@ const app = new App({
   socketMode: true,
 });
 
+
 app.command('/hubspot', async({command, ack, say}) => {
 	await ack();
-  const result = await getCompanies();
-  console.log(result);
+  const results  = await getCompanies();
+  const result = results[0];
   
   const blocks =  [
       {
