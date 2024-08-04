@@ -2,7 +2,8 @@
 const { App } = require('@slack/bolt');
 require('dotenv').config();
 const express = require('express');
-const {getCompanies, findCompany, convertDate,tcase}  = require('./hubspot.js');
+const {getCompanies, findCompany, convertDate,tcase, }  = require('./hubspot.js');
+const {openai_message}  = require('./openai.js');
 
 const port = process.env.PORT || 8080;
 
@@ -24,6 +25,17 @@ const app = new App({
   socketMode: true,
 });
 
+app.command('/ask', async ({command, ack, say}) => {
+  try {
+    let cmd = command.text;
+    let completion = await openai_message(cmd);
+    say(completion.data.choices[0].message.content);
+    
+  } catch (error) {
+      console.log("err")
+    console.error(error);
+  }
+})
 
 app.command('/hubspot', async({command, ack, say}) => {
 	await ack();
